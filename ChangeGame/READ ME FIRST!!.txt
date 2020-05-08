@@ -55,5 +55,9 @@ To use this script with Up Deck, follow these steps:
 Remember to type the path and game name without the brackets <>
 
 
+Change Log
+5-5-2020 - Original Publication
+5-7-2020 - Changes made to include the client ID of the OAuth Token as part of the authentication to get the twitch ID of the user
+
 
 

@@ -1,11 +1,22 @@
+# The changegame.py script is built to simply change the game you a twitch streamer. The script uses the Twitch API to 
+# change the name of the game to whatever the user wants it to be. This script requires python to be installed on your machine.
+
+# Change Log
+# 5-5-2020 - Original Publication
+# 5-7-2020 - Changes made to include the client ID of the OAuth Token as part of the authentication to get their twitch ID, the 
+#            The section of code marked Get Client-ID of OAuth Token was added to retrieve the Client ID. Additional comments were
+#            also added
+
+# Libraries to import
 import json
 import requests
 import sys
 import getopt
 
-oauth = '' # Enter access token that is generated from twitchtokengenerator.com between the apostrophes 
+# Twitch OAuth Code
+oauth = '' # Enter access token that is generated from twitchtokengenerator.com
 
-
+# Body of Script
 def main(argv):
     gamename = ' '
     try:
@@ -14,14 +25,26 @@ def main(argv):
       print ('Failed')
       sys.exit(2)
       
-    # Get Twitch ID
+    # Get Client-ID of OAuth Token
+    idheaders = {
+        'Authorization': 'OAuth ' + oauth,
+    }
+    idresponse = requests.get('https://id.twitch.tv/oauth2/validate', headers=idheaders)
+    data = idresponse.json()
+    idjsondump = json.dumps(data)
+    idjsondata = json.loads(idjsondump)
+    client_id = idjsondata['client_id']
+    
+    # Get Twitch ID Number
     headers = {
         'Authorization': 'Bearer ' + oauth,
+        'Client-ID': client_id
     }
     response = requests.get('https://api.twitch.tv/helix/users', headers=headers)
     data = response.json()
     jsondump = json.dumps(data)
     jsondata = json.loads(jsondump)
+    print(jsondata)
     id = jsondata['data'][0]['id']
 
     # Change Game
