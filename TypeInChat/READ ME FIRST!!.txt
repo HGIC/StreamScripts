@@ -1,0 +1,57 @@
+TypeInChat.py Script readme for Up Deck or manual run
+Created by HGIC
+Date: 5/20/2020
+
+Overview
+
+The TypeInChat.py script is built to allow updeck users to put an emote in chat by pushing a button on their deck
+
+Setup
+
+Download python from https://www.python.org/download/
+Install python
+    Note the install location for reference below
+Open a command prompt and run the following commands
+    path %path%;C:\Users\%username%\AppData\Local\Programs\Python\Python38**
+    path %path%;C:\Users\%username%\AppData\Local\Programs\Python\Python38\scripts**
+
+    **Note if the version of python is not 3.8, this directory will be different, use reference the install location from the install**
+    
+Download the script and place it in your desired directory
+
+Create your oauth token
+To setup this script you must acquire an oauth token that is linked to your account. The oauth token is the authentication that is used to link the script to your account. There is a variable in the script named oauth on line 6 that needs to be filled in to make this work. To acquire the oauth token perform the following steps:
+
+1. Go to twitchtokengenerator.com
+2. Choose custom scope token
+3. The oauth token must have the chat_login scope as well as chat:read and chat:edit, scroll down to find that scope and click yes under the add scope in that line
+4. Then click Generate Token
+5. When prompted logon with your twitch account and go through the various verification steps
+
+Your oauth token will be presented on the page. That token will be valid for 60 days. Take that token and paste it in between the "" on line 22 next to the PASS variable. Then enter your twitch username between the "" on line 21 next to the NICK variable then, do the same on line 26 between the "" next to the NICK variable then save.
+
+Syntax
+The Syntax of the script is as follows:
+
+TypeInChat.py -t "<emote text>"
+
+The <Game Name> argument must be in quotes. For example:
+
+TypeInChat.py -t "Kappa"
+
+This will type the Kappa emote in the users chat. The emote must be the correct text that it is assigned on twitch.
+
+Integration with Up Deck
+
+To use this script with Up Deck, follow these steps:
+
+1. Create a new button or modify a button on your deck
+2. In the commands window type the following as you see it.
+!!! Note: There aren't typos or missing quotes, if they are omitted, it is for the appropriate syntax of the command to be run by Up Deck !!!
+    Type emote in chat
+    launch
+    app=python" "<Path where Script is saved>\TypeInChat.py" -t "<Emote Text>
+Remember to type the path and emote text without the brackets <>
+
+
+
